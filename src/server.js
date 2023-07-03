@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 dbConnection();
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'https://fabulous-praline-a34cda.netlify.app'
 }))
 
 app.use(fileUpload({
