@@ -1,6 +1,7 @@
 const Source = require('../models/sourceModel');
 const helpers = require('../helpers/functions');
 const path = require('path');
+const fs = require('fs');
 
 const getSources = async (req, res) => {
   try {
@@ -19,7 +20,15 @@ const getSources = async (req, res) => {
 const saveSource = (req, res) => {
   
     const file = req.files.file;
-  
+
+    if(!fs.existsSync(path.join('uploads'))) {
+      try {
+        fs.mkdirSync('uploads');
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
     const extension = file.name.split('.').pop();
     const fileName = `${Date.now()}.${extension}`;
   
@@ -66,7 +75,7 @@ const deleteSorce = async (req, res) => {
     const foundSource = await Source.findById(id);
     if(!foundSource) return res.sendStatus(204);
 
-    const result = await Source.deleteOne({ _id: id });
+    const result = await Source.deleteOne({ _id: foundSource._id });
 
     // Deletes the file in the server
     helpers.fileDelete(path.join('uploads', foundSource.file));

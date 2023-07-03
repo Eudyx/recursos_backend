@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const router = Router();
-const sourceDleteController = require('../controllers/userDeleteController');
+const userDleteController = require('../controllers/userDeleteController');
 
 router.route('/')
-    .post(sourceDleteController.createUserDelete);
+    .post(userDleteController.createUserDelete);
 
 module.exports = router;

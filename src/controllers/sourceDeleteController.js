@@ -1,4 +1,4 @@
-const sourceDelteModel = require('../models/sourceDeleteModel');
+const sourceDeleteModel = require('../models/sourceDeleteModel');
 
 // creates a reacord of a item tha is being delete
 const createSourceDelete = async (req, res) => {
@@ -7,7 +7,7 @@ const createSourceDelete = async (req, res) => {
     if(!title || !file || !description || !owner || !deleteDescription) return res.status(400).json({ 'message': 'All the fields are required' });
 
     try {
-      const result = await sourceDelteModel.create({
+      const result = await sourceDeleteModel.create({
           title,
           file,
           description,
